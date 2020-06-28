@@ -5,7 +5,7 @@
 **[Check out the App Website](https://app.manipalthetalk.org)**
 
 ---
-
+<br>
 
 ### Features ✨
 - Home Feed Tab
@@ -47,7 +47,7 @@
 - Background Fetch to Automatically Update Content
 
 
-
+<br>
 
 ### Installation ⚡️
 
@@ -67,21 +67,26 @@ open MTTN.xcworkspace
 Build and Run
 ```
 
+<br>
 
 ### Download 📦
 **App is available on App Store.** You can donwload on your iOS device from [here](https://apps.apple.com/in/app/mttn/id1386295566).
 
-
+<br>
 
 ### Contributions 👷🏻‍♂️
 
 You are more than welcome to make changes and/or add features to this application.
 Please submit a PR with your changes.
 
+<br>
+
 ### Coding standards 🔒
 
 Followed the following guides and code standards:
 [Swift Style Guide](https://github.com/linkedin/swift-style-guide)
+
+<br>
 
 ### License 📝
 
@@ -92,3 +97,12 @@ Feel Free to use the code base in any way you'd like!
 
 [MIT License](https://github.com/naman17/MTTN-iOS-APP/blob/master/LICENSE)
 
+<br>
+
+### Promotional
+
+<p float="left">
+<img src="Promotional/s1.jpg" width="350">
+<img src="Promotional/s2.jpg" width="350">
+<img src="Promotional/s3.jpg" width="350">
+</p>
