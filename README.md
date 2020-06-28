@@ -102,7 +102,7 @@ Feel Free to use the code base in any way you'd like!
 ### Promotional
 
 <p float="left">
-<img src="Promotional/s1.jpg" width="350">
-<img src="Promotional/s2.jpg" width="350">
-<img src="Promotional/s3.jpg" width="350">
+<img src="Promotional/1.jpg" width="350">
+<img src="Promotional/2.jpg" width="350">
+<img src="Promotional/3.jpg" width="350">
 </p>
