@@ -2,6 +2,7 @@
 
 # Manipal The Talk Network
 **An application made for students, by students!**
+<br>
 **[Check out the App Website](https://app.manipalthetalk.org)**
 
 ---
@@ -47,6 +48,7 @@
 - Background Fetch to Automatically Update Content
 - Notifications Deep Linking
 - Custom App Icons
+- iPad Support 
 
 
 <br>
@@ -74,7 +76,7 @@ Build and Run
 <br>
 
 ### Download 📦
-**App is available on App Store.** You can donwload on your iOS device from [here](https://apps.apple.com/in/app/mttn/id1386295566).
+**App is available on App Store.** You can download on your iOS device from [here](https://apps.apple.com/in/app/mttn/id1386295566).
 
 <br>
 
