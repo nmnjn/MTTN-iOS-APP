@@ -59,10 +59,12 @@ https://github.com/naman17/MTTN-iOS-APP.git
 ```
 pod install
 ```
-3. Open in Xcode
+3. Open in Xcode.
 ```
 open MTTN.xcworkspace
 ```
+4. **Important:** Register the app with your [Firebase Account](https://console.firebase.google.com/) and drop the `GoogleService-Info.plist` into the project directory.
+
 ```
 Build and Run
 ```
@@ -99,10 +101,11 @@ Feel Free to use the code base in any way you'd like!
 
 <br>
 
-### Promotional
+### Promotional 🎊
 
 <p float="left">
 <img src="Promotional/1.jpg" width="350">
 <img src="Promotional/2.jpg" width="350">
 <img src="Promotional/3.jpg" width="350">
+<img src="Promotional/4.jpg" width="350">
 </p>
