@@ -45,6 +45,8 @@
 - Animations
 - Strong Focus on UI/UX
 - Background Fetch to Automatically Update Content
+- Notifications Deep Linking
+- Custom App Icons
 
 
 <br>
