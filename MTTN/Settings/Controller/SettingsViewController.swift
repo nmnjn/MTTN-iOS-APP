@@ -10,6 +10,7 @@ import UIKit
 import SafariServices
 import UserNotifications
 
+
 class SettingsViewController: UIViewController{
     
     fileprivate let cellId = "cellId"

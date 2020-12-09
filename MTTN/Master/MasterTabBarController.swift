@@ -10,6 +10,7 @@ import UIKit
 import FirebaseDatabase
 import CBFlashyTabBarController
 
+
 class MasterTabBarController: CBFlashyTabBarController {
     
     var ref : DatabaseReference?
@@ -54,8 +55,6 @@ class MasterTabBarController: CBFlashyTabBarController {
         ref = Database.database().reference()
         
         
-        
-        
         ref?.child("SLCM").observeSingleEvent(of: .childAdded, with: { (snapshot) in
             if let hideSLCM = snapshot.value as? Bool{
                 if hideSLCM {
@@ -83,7 +82,6 @@ class MasterTabBarController: CBFlashyTabBarController {
     }
     @objc func slcmListener() {
         ref?.child("SLCM").observe(.childChanged, with: { (snapshot) in
-    
             if let hideSLCM = snapshot.value as? Bool{
                 if hideSLCM == true {
                     if self.viewControllers?.count == 5{
@@ -98,6 +96,7 @@ class MasterTabBarController: CBFlashyTabBarController {
         })
     }
 }
+
 
 extension MasterTabBarController: Themed {
     func applyTheme(_ theme: AppTheme) {

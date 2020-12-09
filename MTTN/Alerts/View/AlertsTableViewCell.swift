@@ -38,6 +38,15 @@ class AlertsTableViewCell: UITableViewCell{
         label.textColor = .lightGray
         return label
     }()
+    lazy var typeLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .lightGray
+        return label
+    }()
+    
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -63,6 +72,9 @@ class AlertsTableViewCell: UITableViewCell{
         _ = bodyLabel.anchor(top: titleLabel.bottomAnchor, left: backgroundCard.leftAnchor, bottom: nil, right: backgroundCard.rightAnchor, topConstant: 16, leftConstant: 16, bottomConstant: 0, rightConstant: 16, widthConstant: 0, heightConstant: 0)
         addSubview(dateLabel)
         _ = dateLabel.anchor(top: bodyLabel.bottomAnchor, left: backgroundCard.leftAnchor, bottom: backgroundCard.bottomAnchor, right: backgroundCard.rightAnchor, topConstant: 12, leftConstant: 16, bottomConstant: 16, rightConstant: 16, widthConstant: 0, heightConstant: 0)
+        addSubview(typeLabel)
+        _ = typeLabel.anchor(top: bodyLabel.bottomAnchor, left: nil, bottom: backgroundCard.bottomAnchor, right: backgroundCard.rightAnchor, topConstant: 12, leftConstant: 16, bottomConstant: 16, rightConstant: 16, widthConstant: 0, heightConstant: 0)
+
     }
     
 }

@@ -24,6 +24,7 @@ struct AppTheme {
     var textColor: UIColor
     var lightTextColor: UIColor
     var detailedTextColor: UIColor
+    var tweetBackgroundColor:UIColor
     
     var cellHighlightColor: UIColor
     var separatorColor: UIColor
@@ -31,6 +32,8 @@ struct AppTheme {
     var skeletonColor: UIColor
     
     var gradientColors: [UIColor]
+    
+    
 }
 
 extension AppTheme {
@@ -54,6 +57,7 @@ extension AppTheme {
         textColor: UIColor(rgb: 0x555555),
         lightTextColor: UIColor(rgb: 0xAAAAAA),
         detailedTextColor: UIColor.init(white: 0.2, alpha: 1),
+        tweetBackgroundColor: UIColor(rgb: 0x808080),
         
         cellHighlightColor: UIColor(rgb: 0xF4D1F2),
         separatorColor: UIColor.init(white: 0.6, alpha: 0.3),
@@ -66,7 +70,7 @@ extension AppTheme {
                           UIColor(red: 32/255, green: 158/255, blue: 255/255, alpha: 1.0),
                           UIColor(red: 90/255, green: 120/255, blue: 127/255, alpha: 1.0),
                           UIColor(red: 58/255, green: 255/255, blue: 217/255, alpha: 1.0)]
-    )
+        )
     
     static let dark = AppTheme(
         appTintColor: appTintColorDark,
@@ -83,6 +87,7 @@ extension AppTheme {
         textColor: UIColor(rgb: 0xAAAAAA),
         lightTextColor: UIColor(rgb: 0x555555),
         detailedTextColor: UIColor.init(white: 0.8, alpha: 1),
+        tweetBackgroundColor: UIColor(rgb: 0x696969),
         
         cellHighlightColor: UIColor(rgb: 0x34363D),
         separatorColor: UIColor.init(white: 0.4, alpha: 0.3),
@@ -96,6 +101,7 @@ extension AppTheme {
                          UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1.0),
                          UIColor(red: 0, green: 0, blue: 0, alpha: 1.0),
                          UIColor(red: 95/255, green: 95/255, blue: 95/255, alpha: 1.0)]
+    
     )
 }
 

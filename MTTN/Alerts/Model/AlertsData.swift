@@ -15,4 +15,5 @@ struct Alert {
     var message: String?
     var date: String?
     var url: String?
+	var type: String?
 }

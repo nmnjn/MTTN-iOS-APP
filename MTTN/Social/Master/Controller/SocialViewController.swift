@@ -14,6 +14,8 @@ import SafariServices
 import FirebaseAuth
 import Disk
 import SDWebImage
+import FittedSheets
+import ShimmerSwift
 
 
 class SocialViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout{
@@ -25,10 +27,14 @@ class SocialViewController: UICollectionViewController, UICollectionViewDelegate
     fileprivate let noirSelectCellId = "noirSelectCellId"
     fileprivate let blitzCellId = "blitzCellId"
     fileprivate let noirCardIsActivated = "noirCardIsActivated"
+    fileprivate let musicCellId = "musicCellId"
+    fileprivate let twitterCellId = "twitterCellId"
     
     fileprivate let refreshControl = UIRefreshControl()
     fileprivate var ref : DatabaseReference?
     fileprivate var shouldRefresh : Bool = true
+    
+    var music:MusicCollectionViewCell?
     
     var instagramData: [InstagramData]?{
         didSet{
@@ -38,6 +44,20 @@ class SocialViewController: UICollectionViewController, UICollectionViewDelegate
         didSet{
         }
     }
+    
+    var playlistFeed: [playlistData]?{
+        didSet{
+        }
+    }
+    
+    var twitterData: [twitterResponse]?{
+        didSet{
+        }
+    }
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,16 +71,31 @@ class SocialViewController: UICollectionViewController, UICollectionViewDelegate
         setupCollectionView()
         self.youtubeItems = self.getYoutubeItemsFromCache()
         self.instagramData = self.getInstagramPostsFromCache()
+        self.playlistFeed = self.getPlaylistDataFromCache()
+        self.twitterData = self.getTwitterDataFromCache()
         let dispatchQueue = DispatchQueue(label: "QueueIdentification", qos: .background)
         dispatchQueue.async{
         //Time consuming task here
             self.getInstagramPosts()
             self.getYoutubeVideos()
+            self.getPlaylistData()
+            self.getTwitterData()
         }
+        
+       
 //        DispatchQueue.main.async {
-
+//            self.music?.playlistCollectionView.reloadData()
 //        }
     }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		self.playlistFeed = self.playlistFeed?.shuffled()
+		DispatchQueue.main.async {
+			let indexPath = IndexPath(item: 3, section: 0)
+			self.collectionView?.reloadItems(at: [indexPath])
+		}
+	}
     
     fileprivate func setupNavigationBar(){
         navigationItem.title = "MTTN Social"
@@ -82,6 +117,8 @@ class SocialViewController: UICollectionViewController, UICollectionViewDelegate
         collectionView.register(YoutubeCollectionViewCell.self, forCellWithReuseIdentifier: youtubeCellId)
         collectionView.register(InstagramCollectionViewCell.self, forCellWithReuseIdentifier: instagramCellId)
         collectionView.register(UpcomingEventsCollectionViewCell.self, forCellWithReuseIdentifier: upcomingEventsCellId)
+        collectionView.register(MusicCollectionViewCell.self, forCellWithReuseIdentifier:musicCellId)
+        collectionView.register(TwitterCollectionViewCell.self, forCellWithReuseIdentifier:twitterCellId)
         
         collectionView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
     }
@@ -95,7 +132,7 @@ class SocialViewController: UICollectionViewController, UICollectionViewDelegate
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 5
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -110,10 +147,23 @@ class SocialViewController: UICollectionViewController, UICollectionViewDelegate
             cell.instagramData = self.instagramData ?? []
             return cell
         case 2:
+
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier:twitterCellId, for: indexPath)as! TwitterCollectionViewCell
+            cell.socialViewController = self
+            cell.twitterData = self.twitterData ?? []
+            return cell
+        case 3:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier:musicCellId, for: indexPath)as! MusicCollectionViewCell
+            cell.socialViewController = self
+            cell.playlistFeed = self.playlistFeed ?? []
+            return cell
+        case 4:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: youtubeCellId, for: indexPath) as! YoutubeCollectionViewCell
             cell.socialViewController = self
             cell.youtubeItems = self.youtubeItems ?? []
             return cell
+
+            
         default:
             return UICollectionViewCell()
         }
@@ -127,6 +177,10 @@ class SocialViewController: UICollectionViewController, UICollectionViewDelegate
         case 1:
             return CGSize(width: view.frame.width, height: 305)
         case 2:
+            return CGSize(width: view.frame.width, height: 240)
+        case 3:
+            return CGSize(width: view.frame.width, height: 180)
+        case 4:
             return CGSize(width: view.frame.width, height: 180)
         default:
             return CGSize(width: view.frame.width, height: 200)
@@ -136,6 +190,20 @@ class SocialViewController: UICollectionViewController, UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         return
     }
+    
+    func tabMe(spotify:String,apple:String,youtube:String){
+        
+        let playlistVC = playlistViewC()
+        playlistVC.s=spotify
+        playlistVC.a=apple
+        playlistVC.y=youtube
+        let sheetController = SheetViewController(controller: playlistVC, sizes: [.marginFromTop(view.frame.height/1.4) , .fixed(250)])
+        sheetController.hasBlurBackground = true
+        sheetController.overlayColor = UIColor.black.withAlphaComponent(0.2)
+        sheetController.cornerRadius = 20
+        self.present(sheetController, animated: true, completion: {})
+    }
+    
     
     func saveInstagramToCache(data: [InstagramData]){
         do{
@@ -223,7 +291,7 @@ class SocialViewController: UICollectionViewController, UICollectionViewDelegate
                         strongSelf.youtubeItems = response.items
                         strongSelf.saveYoutubeToCache(data: response.items)
                         DispatchQueue.main.async(execute: {
-                            let indexPath = IndexPath(item: 2, section: 0)
+                            let indexPath = IndexPath(item: 4, section: 0)
                             strongSelf.collectionView?.reloadItems(at: [indexPath])
                             strongSelf.refreshControl.endRefreshing()
                         })
@@ -253,6 +321,127 @@ class SocialViewController: UICollectionViewController, UICollectionViewDelegate
         }
     }
     
+    func getPlaylistData(){
+        print("Getting Playlist links")
+        guard let urlString = UserDefaults.standard.string(forKey: "Playlist") else{
+            print("***** UNABLE TO GET PLAYLIST API LINK *****")
+            return
+        }
+//        let urlString = "https://techtatvadata.herokuapp.com/links"
+        let url = URL(string: urlString)
+        guard url != nil else {
+            print("wrong url")
+            return
+        }
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: url!) { (data, response, error) in
+            
+            if error == nil && data != nil {
+                
+                let decoder = JSONDecoder()
+                
+                do{
+                    let playlistFeed = try decoder.decode([playlistData].self, from: data!)
+                    let pl = playlistFeed.shuffled()
+                    self.playlistFeed = playlistFeed
+                    self.savePlaylistDataToCache(data: pl)
+                } catch{
+                    print(error)
+                    print("error in json parsing")
+                }
+                DispatchQueue.main.async {
+                    let indexPath = IndexPath(item: 3, section: 0)
+                    self.collectionView?.reloadItems(at: [indexPath])
+                }
+                
+            }
+        }
+        dataTask.resume()
+    }
+        
+    func savePlaylistDataToCache(data: [playlistData]){
+        do{
+            try Disk.save(data, to: .caches, as: "playlist.json")
+        }catch let error{
+            print(error)
+        }
+    }
+    
+    func getPlaylistDataFromCache() -> [playlistData]? {
+    do{
+        let retrievedData = try Disk.retrieve("playlist.json", from: .caches, as: [playlistData]?.self)
+        return retrievedData
+    }catch{
+        return nil
+    }
+}
+    
+    func getTwitterData(){
+        print("Getting Twitter link")
+        guard let urlString = UserDefaults.standard.string(forKey: "Twitter") else{
+            print("***** UNABLE TO GET TWITTER API LINK *****")
+            return
+        }
+//        let urlString = "https://techtatvadata.herokuapp.com/links"
+        let url = URL(string: urlString)
+        guard url != nil else {
+            print("wrong url")
+            return
+        }
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: url!) { (data, response, error) in
+            
+            if error == nil && data != nil {
+                
+                let decoder = JSONDecoder()
+                
+                do{
+                    let twitterFeed = try decoder.decode([twitterResponse].self, from: data!)
+                    self.saveTwitterDataToCache(data: twitterFeed)
+                    self.twitterData = twitterFeed
+                } catch{
+                    print(error)
+                    print("error in json parsing")
+                }
+                DispatchQueue.main.async {
+                    let indexPath = IndexPath(item: 2, section: 0)
+                    self.collectionView?.reloadItems(at: [indexPath])
+                }
+                
+            }
+        }
+        dataTask.resume()
+    }
+    
+    func saveTwitterDataToCache(data: [twitterResponse]){
+        do{
+            try Disk.save(data, to: .caches, as: "twitter.json")
+        }catch let error{
+            print(error)
+        }
+    }
+    
+    func getTwitterDataFromCache() -> [twitterResponse]? {
+    do{
+        let retrievedData = try Disk.retrieve("twitter.json", from: .caches, as: [twitterResponse]?.self)
+        print("got")
+        return retrievedData
+    }catch{
+        return nil
+    }
+}
+    func openTweet(id: String){
+        let webURL = NSURL(string:"http://www.twitter.com/manipalthetalk/status/\(id)")!
+        let application = UIApplication.shared
+        if application.canOpenURL(webURL as URL) {
+            application.open(webURL as URL)
+        } else {
+            openLink(link: "\(webURL)")
+        }
+    }
+    
     func openYoutubeVideo(id: String){
         let appURL = NSURL(string: "youtube://\(id)")!
         let webURL = NSURL(string:"http://www.youtube.com/watch?v=\(id)")!
@@ -278,6 +467,9 @@ class SocialViewController: UICollectionViewController, UICollectionViewDelegate
         }
         present(svc, animated: true, completion: nil)
     }
+    
+
+    
 }
 
 //MARK:- Theming Protocols

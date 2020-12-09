@@ -15,9 +15,11 @@ class SLCMViewController: UITableViewController{
     
     var refreshController = UIRefreshControl()
     var semesterSelectorBarButtonItem = UIBarButtonItem()
+    var calculateGpaBarButtonItem = UIBarButtonItem()
     
     var attendance = [Attendance]()
     var sisAttendance = [SISattendance]()
+    var credits =  [Credits]()
     var sisAllSemestersAttendance : [String: [SISattendance]]?{
         didSet{
             guard let allAttendance = sisAllSemestersAttendance else { return }
@@ -62,7 +64,7 @@ class SLCMViewController: UITableViewController{
     
     let slcmSettingsViewController = SLCMSettingsViewController()
     var isRefreshing = false
-    
+
     fileprivate let attendanceCellId = "attendanceCellId"
     fileprivate let slcmCellId = "slcmCellId"
     fileprivate let sisAttendanceCellId = "sisAttendanceCellId"
@@ -89,28 +91,11 @@ class SLCMViewController: UITableViewController{
         
         setupNavigationBar()
         setupTableView()
+        print("Loaded")
         if UserDefaults.standard.isLoggedIn(){
             
             if isSis{
                 self.refreshData()
-            }
-            else{
-                ref = Database.database().reference()
-                ref?.child("SLCM2").observeSingleEvent(of: .childAdded, with: { (snapshot) in
-                    if let hideSLCM = snapshot.value as? Bool{
-                         self.isSLCMWorking = hideSLCM
-                        if hideSLCM {
-                            print("slcm is working")
-    //                        self.hideNotWorking()
-                            self.refreshData()
-                            SwiftMessages.hide(id: self.warningMessageId)
-                        }else{
-                            print("slcm is not working")
-                            self.showNotWorking()
-                        }
-                        self.slcmListener()
-                    }
-                })
             }
             activateSLCMInterface()
             getData()
@@ -190,25 +175,6 @@ class SLCMViewController: UITableViewController{
         SwiftMessages.show(config: config, view: messageView)
     }
     
-    
-    @objc func slcmListener() {
-        
-        ref?.child("SLCM2").observe(.childChanged, with: { (snapshot) in
-            
-            if let hideSLCM = snapshot.value as? Bool{
-                self.isSLCMWorking = hideSLCM
-                if hideSLCM {
-                    print("slcm is working..")
-                    
-                    self.hideNotWorking()
-                }else{
-                    print("slcm is not working..")
-                    self.showNotWorking()
-                }
-            }
-        })
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -255,16 +221,13 @@ class SLCMViewController: UITableViewController{
                 self.navigationItem.leftBarButtonItem = semesterSelectorBarButtonItem
                navigationItem.title = "SIS"
             }else{
-               navigationItem.title = "SLCM"
+                navigationItem.title = "SLCM"
             }
         }else{
-            self.navigationItem.leftBarButtonItem = nil
             navigationItem.title = ""
         }
-
-        
-//        navigationController?.navigationBar.prefersLargeTitles = true
     }
+    
     
     @objc func showSemesterSelector(){
         
@@ -407,13 +370,14 @@ class SLCMViewController: UITableViewController{
             }
             
         }else{
-            Networking.sharedInstance.fetchSLCMData(Parameters: parameters, dataCompletion: { [weak self] (att, marks) in
+            Networking.sharedInstance.fetchSLCMData(Parameters: parameters, dataCompletion: { [weak self] (att, marks , credits) in
                 guard let self = self else { return }
                 if UserDefaults.standard.isLoggedIn(){
                     // sort att here if needed
                     self.isRefreshing = false
                     self.attendance = att
                     self.marks = marks
+                    self.credits = credits
                     self.noAttendance = false
                     self.reload()
                 }else{
@@ -468,8 +432,15 @@ class SLCMViewController: UITableViewController{
                 AudioServicesPlaySystemSound(1519)
 //                self.refreshController.beginRefreshing()
                 DispatchQueue.main.async {
-                    self.fetchData()
+//                    self.fetchData()
     //                self.floatingMessage(Message: "Refreshing")
+                    
+                    if self.isSis{
+                        self.fetchData()
+
+                    }else{
+                        self.refreshControl?.endRefreshing()
+                    }
                 }
             }else{
                print("SLCM IS FUCKED YO")
@@ -544,6 +515,7 @@ class SLCMViewController: UITableViewController{
             self.present(loginController, animated: true, completion: nil)
             self.reload()
             self.navigationItem.setRightBarButton(UIBarButtonItem(title: "", style: .plain, target: self, action: nil), animated: true)
+            self.navigationItem.setLeftBarButton(UIBarButtonItem(title: "", style: .plain, target: self, action: nil), animated: true)
             self.setupNavigationBar()
             self.tableView.refreshControl = nil
             self.tableView.isScrollEnabled = false
@@ -694,11 +666,9 @@ extension SLCMViewController{
             let percentageArray = percentageText.split(separator: ".")
             cell.percentageLabel.text = String(percentageArray[0])
             
-            print(subject.Code)
-            
-            if let subjectName = subject.Code{
+            if let subjectName = subject.Name{
+                print(subjectName)
                 if let marks = self.marks{
-                    print(marks)
                     if let subjectMarks = marks[subjectName] {
                         var totalSum : Float =  0.0
                         var obtainedSum : Float =  0.0
@@ -801,7 +771,7 @@ extension SLCMViewController{
             if isSis{
                 
             }else{
-                if let subjectName = self.attendance[indexPath.row].Code{
+                if let subjectName = self.attendance[indexPath.row].Name{
                     if let marks = self.marks{
                         if let subjectMarks = marks[subjectName] {
                             if subjectMarks.count == 0 {
@@ -883,5 +853,27 @@ extension String {
         let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
 
         return ceil(boundingBox.width)
+    }
+}
+
+extension UIAlertController {
+
+    func isGpaValid(_ gpa: String) -> Bool {
+        let doubleGpa = (gpa as NSString).doubleValue
+        if doubleGpa > 0.0 && doubleGpa <= 10.0 {
+            return true
+        }
+        return false
+    }
+
+
+    @objc func textDidChangeInLoginAlert() {
+        guard let gpa = textFields?[0].text else { return }
+        if isGpaValid(gpa) {
+            actions.last?.isEnabled = true
+        }
+        else {
+            actions.last?.isEnabled = false
+        }
     }
 }

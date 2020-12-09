@@ -55,6 +55,12 @@ extension UIView {
         return anchors
     }
     
+    func setDimensions(width: CGFloat, height: CGFloat) {
+        translatesAutoresizingMaskIntoConstraints = false
+        widthAnchor.constraint(equalToConstant: width).isActive = true
+        heightAnchor.constraint(equalToConstant: height).isActive = true
+    }
+    
 }
 
 extension UIViewController {
@@ -99,7 +105,7 @@ class LoadingButton: UIButton {
     
     @objc func hideLoading() {
         self.setTitle(originalButtonText, for: UIControl.State())
-        activityIndicator.stopAnimating()
+        activityIndicator?.stopAnimating()
     }
     
     private func createActivityIndicator() -> UIActivityIndicatorView {

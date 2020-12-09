@@ -19,6 +19,7 @@ var savedAttendanceFilePath: String {
 struct SLCMResponse: Decodable{
     let login: String?
     let Attendance: [String: Attendance]?
+    let Credits: [String : Credits]?
     let Marks: [String: [String: MarksContainer]]?
     let user: String?
 }
@@ -74,8 +75,45 @@ class Attendance: NSObject, Decodable, NSCoding{
     }
 }
 
-
 struct MarksContainer: Codable{
     let Obtained : String?
     let Total : String?
+}
+
+class Credits : NSObject, Decodable, NSCoding{
+    
+    struct keys {
+        static let Credits = "Credits"
+        static let Obtained = "Obtained"
+        static let Total = "Total"
+    }
+
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(Credits , forKey: keys.Credits)
+        aCoder.encode(Obtained, forKey: keys.Obtained)
+        aCoder.encode(Total, forKey: keys.Total)
+    }
+       
+   required init?(coder aDecoder: NSCoder) {
+       if let cred = aDecoder.decodeObject(forKey: keys.Credits) as? String{
+           Credits = cred
+       }
+       if let obt = aDecoder.decodeObject(forKey: keys.Obtained) as? String{
+           Obtained = obt
+       }
+       if let tot = aDecoder.decodeObject(forKey: keys.Total) as? String{
+           Total = tot
+       }
+   }
+    
+    var Credits: String?
+    var Obtained  : String?
+    var Total : String?
+}
+
+struct slcmCaptcha:Codable{
+    var id :String?
+    var login:String?
+    var predicted_captcha:String?
+    var url: String?
 }

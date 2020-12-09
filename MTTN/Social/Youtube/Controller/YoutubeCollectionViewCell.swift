@@ -41,11 +41,12 @@ class YoutubeCollectionViewCell: UICollectionViewCell, UICollectionViewDelegateF
     }()
     
     lazy var youtubeCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
+        let layout = SnappingLayout()
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.delegate = self
         cv.dataSource = self
+        cv.decelerationRate = .fast
         cv.register(YoutubeCell.self, forCellWithReuseIdentifier: cellId)
         return cv
     }()
@@ -107,7 +108,7 @@ class YoutubeCollectionViewCell: UICollectionViewCell, UICollectionViewDelegateF
         addSubview(titleLabel)
         titleLabel.anchorWithConstants(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, topConstant: 0, leftConstant: 16, bottomConstant: 0, rightConstant: 16)
         addSubview(youtubeCollectionView)
-        youtubeCollectionView.anchorWithConstants(top: titleLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0)
+        youtubeCollectionView.anchorWithConstants(top: titleLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, topConstant: 0, leftConstant: 10, bottomConstant: 0, rightConstant: 0)
         addSubview(seperatorLineView)
         _ = seperatorLineView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, topConstant: 0, leftConstant: 16, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0.7)
         
