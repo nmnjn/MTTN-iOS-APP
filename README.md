@@ -75,15 +75,9 @@ Build and Run
 
 <br>
 
-### Download 📦
-**App is available on App Store.** You can download on your iOS device from [here](https://apps.apple.com/in/app/mttn/id1386295566).
+### Developers 
 
-<br>
-
-### Contributions 👷🏻‍♂️
-
-You are more than welcome to make changes and/or add features to this application.
-Please submit a PR with your changes.
+[Naman Jain](https://nmnjn.me)
 
 <br>
 
@@ -92,24 +86,3 @@ Please submit a PR with your changes.
 Followed the following guides and code standards:
 [Swift Style Guide](https://github.com/linkedin/swift-style-guide)
 
-<br>
-
-### License 📝
-
-This repo aims to provide the students a product to learn good programming practices and concepts used in a small-scale production app. 
-
-Feel Free to use the code base in any way you'd like!
-
-
-[MIT License](https://github.com/naman17/MTTN-iOS-APP/blob/master/LICENSE)
-
-<br>
-
-### Promotional 🎊
-
-<p float="left">
-<img src="Promotional/1.jpg" width="350">
-<img src="Promotional/2.jpg" width="350">
-<img src="Promotional/3.jpg" width="350">
-<img src="Promotional/4.jpg" width="350">
-</p>

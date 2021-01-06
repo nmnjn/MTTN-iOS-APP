@@ -11,6 +11,7 @@ import UIKit
 import AudioToolbox
 import Firebase
 import RNCryptor
+import SDWebImage
 
 private let critterViewDimension: CGFloat = 160
 private let critterViewFrame = CGRect(x: 0, y: 0, width: critterViewDimension, height: critterViewDimension)
@@ -25,8 +26,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var slcmViewController: SLCMViewController?
     var isSis = false
+    let stackView = UIStackView()
+    let verticalStackView = UIStackView()
+//	var activityIndicator = UIActivityIndicatorView()
     
     var sisTextTimer: Timer?
+    var slcmCaptchaUrl = String()
+    var slcmCaptchaId = String()
     
 //    private let critterView = CritterView(frame: critterViewFrame)
     private let screenSize:CGRect = UIScreen.main.bounds
@@ -69,7 +75,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         label.numberOfLines = 0
         label.textColor = .lightGray
         label.textAlignment = .center
-        label.text = "We do not collect or share any aggregated information. Your ID and Password are stored locally on the device and used to directly interact with our SLCM server."
+        label.text = ""
         label.font = UIFont(name: "HelveticaNeue", size: 10)
         return label
     }()
@@ -89,6 +95,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         button.setTitleColor(.red, for: .normal)
         button.layer.cornerRadius = 7
         button.setTitle("Cancel", for: UIControl.State())
+        //button.constrainWidth(constant: textFieldWidth/2)
         button.titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 15)
         button.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
         return button
@@ -99,6 +106,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textField.backgroundColor = #colorLiteral(red: 0.768627451, green: 1, blue: 0.9764705882, alpha: 1)
         textField.isSecureTextEntry = true
         textField.returnKeyType = .done
+        return textField
+    }()
+    
+    private lazy var captchaTextField: UITextField = {
+        let textField = self.createTextField(text: "Captcha")
+        textField.backgroundColor = #colorLiteral(red: 0.768627451, green: 1, blue: 0.9764705882, alpha: 1)
+        textField.returnKeyType = .done
+        textField.constrainHeight(constant: textFieldHeight)
         return textField
     }()
     
@@ -116,10 +131,80 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         button.tintColor = #colorLiteral(red: 0.768627451, green: 1, blue: 0.9764705882, alpha: 1)
         button.layer.cornerRadius = 7
         button.setTitle("Log In", for: UIControl.State())
+//        button.constrainWidth(constant: textFieldWidth/2)
         button.titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 15)
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return button
     }()
+    
+    private lazy var captchaImageView : UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        //iv.image = UIImage(named: "place")
+		return iv
+    }()
+    
+    private lazy var refreshButton : UIButton = {
+		let button = UIButton(type: .infoLight)
+		button.setImage(UIImage.init(named: "reset"), for: .normal)
+        button.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
+        button.constrainWidth(constant: 30)
+      //  button.constrainHeight(constant: 30)
+        return button
+    }()
+    
+    func placeCaptcha(){
+        guard let urlString = UserDefaults.standard.string(forKey: "SLCM_Captcha") else{
+            return
+        }
+        let url = URL(string: urlString)
+        guard url != nil else {
+            print("wrong url")
+            return
+        }
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: url!) { (data, response, error) in
+			
+			if error != nil {
+				DispatchQueue.main.async {
+					self.captchaImageView.sd_imageIndicator?.stopAnimatingIndicator()
+					self.captchaImageView.image = UIImage(named: "place")
+				}
+//				self.captchaImageView.sd_imageIndicator?.stopAnimatingIndicator()
+                self.handleInvalidMessage(Message: "No Internet Connection", isLogin: false)
+				//self.captchaImageView.image = UIImage(named: "place")
+				//print("here", error)
+			}
+            
+            if error == nil && data != nil {
+                
+                let decoder = JSONDecoder()
+                
+                do{
+                    let slcmCaptchaData = try decoder.decode(slcmCaptcha.self, from: data!)
+                    self.slcmCaptchaUrl = slcmCaptchaData.url ?? ""
+                    self.slcmCaptchaId = slcmCaptchaData.id ?? ""
+                    self.captchaImageView.sd_setImage(with: URL(string: slcmCaptchaData.url ?? ""), placeholderImage: nil )
+                    print(slcmCaptchaData)
+                } catch{
+                    print(error)
+                    print("error in json parsing")
+                }
+              
+            }
+        }
+        
+        dataTask.resume()
+    }
+    
+    
+    @objc func handleRefresh(){
+		self.captchaImageView.image = nil
+		self.captchaImageView.sd_imageIndicator?.startAnimatingIndicator()
+        placeCaptcha()
+    }
+    
     
     let items = ["SLCM", "SIS"]
     
@@ -133,6 +218,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @objc func handleSegmentedControlValueChanged(_ sender: UISegmentedControl){
         switch sender.selectedSegmentIndex{
         case 0:
+            self.captchaImageView.isHidden = false
+            self.refreshButton.isHidden = false
+            self.stackView.isHidden = false
+            self.captchaTextField.isHidden = false
             UIView.animate(withDuration: 0.5) {
                 self.eduBuildingView.alpha = 0
                 self.icBuildingView.alpha = 0.6
@@ -146,6 +235,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             print("slcm")
             break
         case 1:
+            self.captchaImageView.isHidden = true
+            self.refreshButton.isHidden = true
+            self.stackView.isHidden = true
+            self.captchaTextField.isHidden = true
             UIView.animate(withDuration: 0.5) {
                 self.eduBuildingView.alpha = 0.6
                 self.icBuildingView.alpha = 0
@@ -177,8 +270,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         observeKeyboardNotifications()
         setUpView()
         setupDatePickerView()
-        
+		handleRefresh()
+//		self.activityIndicator = UIActivityIndicatorView(style: .gray)
+//		self.activityIndicator.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
+//		self.activityIndicator.hidesWhenStopped = true
+		self.captchaImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//		view.addSubview(self.activityIndicator)
     }
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         self.sisTextTimer?.invalidate()
@@ -202,26 +301,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
-    }
-    
-    // MARK: - UITextFieldDelegate
-    
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        let deadlineTime = DispatchTime.now() + .milliseconds(100)
-//
-//        if textField == idTextField {
-//            DispatchQueue.main.asyncAfter(deadline: deadlineTime) { // 🎩✨ Magic to ensure animation starts
-//                let fractionComplete = self.fractionComplete(for: textField)
-//                self.critterView.startHeadRotation(startAt: fractionComplete)
-//                self.passwordDidResignAsFirstResponder()
-//            }
-//        }
-//        else if textField == passwordTextField || textField == dateOfBirthTextField{
-//            DispatchQueue.main.asyncAfter(deadline: deadlineTime) { // 🎩✨ Magic to ensure animation starts
-//                self.critterView.isShy = true
-//            }
-//        }
-//    }
+	}
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == idTextField {
@@ -230,42 +310,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         else {
             passwordTextField.resignFirstResponder()
             dateOfBirthTextField.resignFirstResponder()
-//            passwordDidResignAsFirstResponder()
         }
         return true
     }
     
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        if textField == idTextField {
-//            critterView.stopHeadRotation()
-//        }
-//    }
-//
-//    @objc private func textFieldDidChange(_ textField: UITextField) {
-//        guard !critterView.isActiveStartAnimating, textField == idTextField else { return }
-//        let fractionComplete = self.fractionComplete(for: textField)
-//        critterView.updateHeadRotation(to: fractionComplete)
-//
-//    }
     
     // MARK: - Private
     
     private func setUpView() {
-//        if #available(iOS 13.0, *) {
-//            view.backgroundColor = .systemBackground
-//        } else {
-//            view.backgroundColor = .white
-//        }
-        
-        
+
         
         view.backgroundColor = .white
         
         segmentedController.selectedSegmentIndex = 0
-        
-//        view.addSubview(critterView)
-//        setUpCritterViewConstraints()
-//        critterView.alpha = 0
+
         
         view.addSubview(icBuildingView)
         icBuildingView.translatesAutoresizingMaskIntoConstraints = false
@@ -292,26 +350,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         view.addSubview(passwordTextField)
         setUpPasswordTextFieldConstraints()
+		
+        view.addSubview(stackView)
+        setUpCaptchaConstraints()
         
         view.addSubview(dateOfBirthTextField)
         setUpDateOfBirthTextFieldConstraints()
+    
+        view.addSubview(verticalStackView)
+        setupVerticalStackView()
         
-        view.addSubview(loginButton)
-        setupLoginButtonConstraints()
-        
-        view.addSubview(dismissButton)
-        setupDismissButtonConstraints()
-        
-        view.addSubview(desclaimerLabel)
-        setupDesclaimerLabelConstraints()
-        
+		view.addSubview(loginButton)
+		setupLoginButtonConstraints()
+		
+		view.addSubview(dismissButton)
+		setupDismissButtonConstraints()
+		
+		
         view.addSubview(segmentedController)
-        _ = segmentedController.anchor(top: nil, left: view.leftAnchor, bottom: desclaimerLabel.topAnchor, right: view.rightAnchor, topConstant: 16, leftConstant: 16, bottomConstant: 16, rightConstant: 16, widthConstant: 0, heightConstant: 40)
-        
-        
-        view.addSubview(sisMessageLabel)
-        _ = sisMessageLabel.anchor(top: nil, left: view.leftAnchor, bottom: eduBuildingView.topAnchor, right: view.rightAnchor, topConstant: 16, leftConstant: 16, bottomConstant: 16, rightConstant: 16, widthConstant: 0, heightConstant: 0)
-        
+		_ = segmentedController.anchor(top: nil, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, topConstant: 16, leftConstant: 16, bottomConstant: 32, rightConstant: 16, widthConstant: 0, heightConstant: 40)
         
         setUpGestures()
     }
@@ -334,14 +391,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }, completion: nil)
     }
     
-//    private func setUpCritterViewConstraints() {
-//        critterView.translatesAutoresizingMaskIntoConstraints = false
-//        critterView.heightAnchor.constraint(equalToConstant: critterViewDimension).isActive = true
-//        critterView.widthAnchor.constraint(equalTo: critterView.heightAnchor).isActive = true
-//        critterView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        critterView.topAnchor.constraint(equalTo: view.centerYAnchor, constant: -200).isActive = true
-//    }
-    
     private func setUpEmailTextFieldConstraints() {
         idTextField.translatesAutoresizingMaskIntoConstraints = false
         idTextField.heightAnchor.constraint(equalToConstant: textFieldHeight).isActive = true
@@ -357,6 +406,35 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         passwordTextField.topAnchor.constraint(equalTo: idTextField.bottomAnchor, constant: textFieldSpacing).isActive = true
     }
+
+    private func setUpCaptchaTextFieldConstraints(){
+        captchaTextField.translatesAutoresizingMaskIntoConstraints = false
+        captchaTextField.heightAnchor.constraint(equalToConstant: textFieldHeight).isActive = true
+        captchaTextField.widthAnchor.constraint(equalToConstant: textFieldWidth).isActive = true
+        captchaTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        captchaTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: textFieldSpacing).isActive = true
+    }
+    
+    private func setUpCaptchaConstraints(){
+        stackView.alignment = .fill
+        stackView.axis = .horizontal
+        stackView.addArrangedSubview(captchaImageView)
+        stackView.addArrangedSubview(refreshButton)
+    }
+    
+    private func setupVerticalStackView(){
+        verticalStackView.translatesAutoresizingMaskIntoConstraints = false
+        verticalStackView.spacing = textFieldSpacing
+        verticalStackView.axis = .vertical
+        verticalStackView.addArrangedSubview(captchaTextField)
+        verticalStackView.addArrangedSubview(stackView)
+//        verticalStackView.addArrangedSubview(loginButton)
+//        verticalStackView.addArrangedSubview(dismissButton)
+        verticalStackView.widthAnchor.constraint(equalToConstant: textFieldWidth).isActive = true
+        verticalStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        verticalStackView.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: textFieldSpacing).isActive = true
+    }
+
     
     private func setUpDateOfBirthTextFieldConstraints() {
         dateOfBirthTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -371,7 +449,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginButton.heightAnchor.constraint(equalToConstant: textFieldHeight).isActive = true
         loginButton.widthAnchor.constraint(equalToConstant: textFieldWidth/2).isActive = true
         loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: textFieldSpacing).isActive = true
+        loginButton.topAnchor.constraint(equalTo: verticalStackView.bottomAnchor, constant: textFieldSpacing).isActive = true
     }
     
     private func setupDismissButtonConstraints() {
@@ -393,19 +471,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let textFieldWidth = textField.bounds.width - (2 * textFieldHorizontalMargin)
         return min(Float(text.size(withAttributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font) : font])).width / textFieldWidth), 1)
     }
-    
-//    private func stopHeadRotation() {
-//        idTextField.resignFirstResponder()
-//        passwordTextField.resignFirstResponder()
-//        critterView.stopHeadRotation()
-//        passwordDidResignAsFirstResponder()
-//    }
-    
-//    private func passwordDidResignAsFirstResponder() {
-//        critterView.isPeeking = false
-//        critterView.isShy = false
-//        passwordTextField.isSecureTextEntry = true
-//    }
+
     
     private func createTextField(text: String) -> UITextField {
         let view = UITextField(frame: CGRect(x: 0, y: 0, width: textFieldWidth, height: textFieldHeight))
@@ -416,7 +482,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         view.autocapitalizationType = .none
         view.spellCheckingType = .no
         view.delegate = self
-//        view.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         let frame = CGRect(x: 0, y: 0, width: textFieldHorizontalMargin, height: textFieldHeight)
         view.leftView = UIView(frame: frame)
@@ -489,7 +554,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
         }else{
             if passwordTextField.text == "" {
-                FloatingMessage().floatingMessage(Message: "Enter Enter Password", onPresentation: {
+                FloatingMessage().floatingMessage(Message: "Enter Password", onPresentation: {
                     self.passwordTextField.becomeFirstResponder()
                 }, onDismiss: {
                     
@@ -531,7 +596,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 
                 switch SLCMError{
                 case .incorrectUserPassword:
-                    self.handleInvalidMessage(Message: "Invalid Credentials")
+                    self.handleInvalidMessage(Message: "Invalid Credentials", isLogin: true)
                     break
                 case .userNotLoggedIn:
                     break
@@ -552,19 +617,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 case .internalServerError:
                     break
                 case .serverOffline:
-                    self.handleInvalidMessage(Message: "Internal Server Offline")
+					self.handleInvalidMessage(Message: "Internal Server Offline", isLogin: true)
                     break
                 }
             }
         }else{
-            let parameters = ["username": idTextField.text!, "password": passwordTextField.text!] as [String: String]
+            let parameters = ["username": idTextField.text!, "password": passwordTextField.text! , "id":slcmCaptchaId,"captcha":captchaTextField.text!] as [String: String]
             view.endEditing(true)
             
-            Networking.sharedInstance.fetchSLCMData(Parameters: parameters, dataCompletion: { (fetchAttendance, fetchMarks) in
+            Networking.sharedInstance.fetchSLCMData(Parameters: parameters, dataCompletion: { (fetchAttendance, fetchMarks , fetchCredits) in
                 DispatchQueue.main.async {
                     // sort fetchedAttendance here in case
                     self.slcmViewController?.attendance = fetchAttendance
                     self.slcmViewController?.marks = fetchMarks
+                    self.slcmViewController?.credits = fetchCredits
                     self.slcmViewController?.noAttendance = false
                     self.slcmViewController?.isSis = false
                     self.successfullyAuthenticatedUser(Parameters: parameters)
@@ -573,13 +639,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 print("reached here in error: \(SLCMError)")
                 switch SLCMError{
                 case .incorrectUserPassword:
-                    self.handleInvalidMessage(Message: "Invalid Credentials")
+                    self.handleInvalidMessage(Message: "Invalid Credentials", isLogin: true)
                     break
                 case .userNotLoggedIn:
                     break
                 case .cannotFindSLCMUrl:
                     break
                 case .connectionToSLCMFailed:
+					//gself.captchaImageView.sd_imageIndicator = nil
+                    self.handleInvalidMessage(Message: "No Internet Connection", isLogin: true)
                     break
                 case .noAttendanceData:
                     self.slcmViewController?.attendance = []
@@ -591,7 +659,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 case .internalServerError:
                     break
                 case .serverOffline:
-                    self.handleInvalidMessage(Message: "Internal Server Offline")
+                    self.handleInvalidMessage(Message: "Internal Server Offline", isLogin: true)
                     break
                 }
             }
@@ -623,11 +691,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
         }
     
-    func handleInvalidMessage(Message: String){
+	func handleInvalidMessage(Message: String, isLogin : Bool){
         DispatchQueue.main.async {
             FloatingMessage().floatingMessage(Message: Message, onPresentation: {
                 AudioServicesPlaySystemSound(1521)
-                self.loginButton.hideLoading()
+				if isLogin == true {
+					self.loginButton.hideLoading()
+				}
+				  //self.loginButton.hideLoading()
 //                self.critterView.isEcstatic = false
 //                self.critterView.isShy = false
 //                self.critterView.isPeeking = true

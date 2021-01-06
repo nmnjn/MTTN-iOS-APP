@@ -57,18 +57,18 @@ class WordpressFeedTableViewCell: UITableViewCell {
     }()
     
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        if UserDefaults.standard.darkModeEnabled {
-            self.selectedBackgroundView!.backgroundColor = selected ? UIColor.init(white: 0.15, alpha: 1) : UIColor.init(white: 0.15, alpha: 1)
-        }else{
-            self.selectedBackgroundView!.backgroundColor = selected ? UIColor.init(white: 0.85, alpha: 1) : UIColor.init(white: 0.85, alpha: 1)
-        }
+//        super.setSelected(selected, animated: animated)
+//        if UserDefaults.standard.darkModeEnabled {
+//            self.selectedBackgroundView!.backgroundColor = selected ? UIColor.init(white: 0.15, alpha: 1) : UIColor.init(white: 0.15, alpha: 1)
+//        }else{
+//            self.selectedBackgroundView!.backgroundColor = selected ? UIColor.init(white: 0.85, alpha: 1) : UIColor.init(white: 0.85, alpha: 1)
+//        }
     }
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+//		self.selectionStyle = .none
         if #available(iOS 13.0, *) {
             
         } else {

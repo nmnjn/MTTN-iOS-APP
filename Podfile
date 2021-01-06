@@ -6,8 +6,8 @@ target 'MTTN' do
   use_frameworks!
 
   # Pods for MTTN
-  pod 'Alamofire'
-  pod 'SDWebImage'
+  pod 'Alamofire', '~> 4.0' 
+  pod 'SDWebImage', '~> 5.0'
   pod 'Firebase/Auth'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
@@ -17,4 +17,8 @@ target 'MTTN' do
   pod 'Disk'
   pod 'SwiftMessages'
   pod 'CBFlashyTabBarController'
+  pod 'FittedSheets'
+  pod 'ShimmerSwift'
+  pod 'DropDown', :git =>'https://github.com/TusharTapadia/DropDown.git', :commit =>'4c672e2d840922f4a7714c12feba9a1b6f68f640'
+
 end

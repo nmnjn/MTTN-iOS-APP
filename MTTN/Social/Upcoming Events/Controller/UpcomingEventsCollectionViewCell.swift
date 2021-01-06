@@ -26,11 +26,12 @@ class UpcomingEventsCollectionViewCell: UICollectionViewCell, UICollectionViewDe
     }()
     
     lazy var eventsCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
+        let layout = SnappingLayout()
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.delegate = self
         cv.dataSource = self
+        cv.decelerationRate = .fast
         cv.register(UpcomingEventsCell.self, forCellWithReuseIdentifier: cellId)
         return cv
     }()
@@ -95,7 +96,7 @@ class UpcomingEventsCollectionViewCell: UICollectionViewCell, UICollectionViewDe
         addSubview(titleLabel)
         titleLabel.anchorWithConstants(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, topConstant: 0, leftConstant: 16, bottomConstant: 0, rightConstant: 16)
         addSubview(eventsCollectionView)
-        eventsCollectionView.anchorWithConstants(top: titleLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0)
+        eventsCollectionView.anchorWithConstants(top: titleLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, topConstant: 0, leftConstant: 10, bottomConstant: 0, rightConstant: 0)
         addSubview(seperatorLineView)
         _ = seperatorLineView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, topConstant: 0, leftConstant: 16, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0.7)
     }

@@ -27,7 +27,7 @@ struct Networking {
     // https://api.myjson.com/bins/1d5sm0
     
     
-    func fetchSLCMData(Parameters: [String: String], dataCompletion: @escaping (_ Data: [Attendance], _ Marks: [String: [String: MarksContainer]]?) -> (),  errorCompletion: @escaping (_ ErrorMessage: SLCMError) -> ()){
+    func fetchSLCMData(Parameters: [String: String], dataCompletion: @escaping (_ Data: [Attendance], _ Marks: [String: [String: MarksContainer]]? , _ Credits: [Credits] ) -> (),  errorCompletion: @escaping (_ ErrorMessage: SLCMError) -> ()){
         
         guard let urlString = UserDefaults.standard.string(forKey: "SLCM") else{
             errorCompletion(SLCMError.cannotFindSLCMUrl)
@@ -35,8 +35,9 @@ struct Networking {
         }
         
         var attendance = [Attendance]()
+        var credits = [Credits]()
         
-        let url = NSURL(string: urlString) //"http://68.183.81.48:6969/attendance") //
+        let url = NSURL(string: "http://139.59.23.178:8000/attendance_again") //"http://68.183.81.48:6969/attendance") //
         
         let session = URLSession.shared
         let request = NSMutableURLRequest(url: url! as URL)
@@ -56,8 +57,8 @@ struct Networking {
         
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
             if let error = error{
+                print("here" , error)
                 errorCompletion(SLCMError.connectionToSLCMFailed)
-                print(error)
                 return
             }
             if let data = data{
@@ -72,6 +73,12 @@ struct Networking {
                     if let user = result.user {
                         UserDefaults.standard.set(user, forKey: "SLCMUser")
                         UserDefaults.standard.synchronize()
+                    }
+                    
+                    if let data = result.Credits {
+                        for item in data {
+                            credits.append(item.value)
+                        }
                     }
                     
                     if let data = result.Attendance {
@@ -95,18 +102,20 @@ struct Networking {
                                 return floatP1! < floatP2!
 
                             })
-                            dataCompletion(attendance, result.Marks ?? nil)
+                            dataCompletion(attendance, result.Marks ?? nil , credits)
                             
                             self.saveSLCMData(Attendance: attendance)
                             if let marks = result.Marks{
                                 self.saveSLCMMarks(Marks: marks)
                             }
+                            
                         }
                     }else{
                         errorCompletion(SLCMError.internalServerError)
                         return
                     }
-                }catch _{
+                }catch {
+                        print(error)
                         errorCompletion(SLCMError.serverOffline)
                         return
                 }
@@ -147,8 +156,8 @@ struct Networking {
 
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
             if let error = error{
-                errorCompletion(SLCMError.connectionToSLCMFailed)
                 print(error)
+                errorCompletion(SLCMError.connectionToSLCMFailed)
                 return
             }
             if let data = data{
@@ -302,6 +311,14 @@ struct Networking {
                 print(error)
             }
         }
+    
+    func saveSLCMCredits(Credits : [String : String]){
+        do{
+            try Disk.save(Credits, to: .caches, as: "credits.json")
+        }catch let error{
+            print(error)
+        }
+    }
         
     func getSavedMarksFromCache() -> [String: [String: MarksContainer]]? {
             do{

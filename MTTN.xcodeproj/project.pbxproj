@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B459DF4256C54D800588B2A /* AlertsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B459DF3256C54D800588B2A /* AlertsData.swift */; };
+		8B51469D256C7655008B590B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B51469C256C7655008B590B /* Assets.xcassets */; };
+		8B7C36ED24A5F9E300C98AFC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B7C36EC24A5F9E300C98AFC /* GoogleService-Info.plist */; };
 		A6FE82350D04DF9354EC99B8 /* Pods_MTTN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D3196BCED76B1BF7F14610 /* Pods_MTTN.framework */; };
 		B2061CEE229F9F4F0024D8E6 /* SocialData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2061CED229F9F4F0024D8E6 /* SocialData.swift */; };
 		B20A614022A6B4560044CB2F /* AlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20A613F22A6B4560044CB2F /* AlertsViewController.swift */; };
-		B20A614222A6B4A30044CB2F /* AlertsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20A614122A6B4A30044CB2F /* AlertsData.swift */; };
 		B20A614422A6B5E10044CB2F /* AlertsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20A614322A6B5E10044CB2F /* AlertsTableViewCell.swift */; };
 		B20A614D22A7AB760044CB2F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20A614C22A7AB760044CB2F /* SettingsViewController.swift */; };
 		B20A614F22A7ADC50044CB2F /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20A614E22A7ADC50044CB2F /* SettingsTableViewCell.swift */; };
@@ -20,7 +22,6 @@
 		B2127BB322B4FBC5009BCD08 /* DeveloperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2127BB222B4FBC5009BCD08 /* DeveloperViewController.swift */; };
 		B21D64322253571C000C6854 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21D64312253571C000C6854 /* AppDelegate.swift */; };
 		B21D64342253571C000C6854 /* WordpressFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21D64332253571C000C6854 /* WordpressFeedViewController.swift */; };
-		B21D64392253571E000C6854 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B21D64382253571E000C6854 /* Assets.xcassets */; };
 		B21D643C2253571E000C6854 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B21D643A2253571E000C6854 /* LaunchScreen.storyboard */; };
 		B21D64442253574F000C6854 /* MasterTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21D64432253574F000C6854 /* MasterTabBarController.swift */; };
 		B21D644A22535778000C6854 /* Theming.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21D644622535778000C6854 /* Theming.swift */; };
@@ -28,11 +29,9 @@
 		B21D644C22535778000C6854 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21D644822535778000C6854 /* AppTheme.swift */; };
 		B21D644D22535778000C6854 /* SubscribableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21D644922535778000C6854 /* SubscribableValue.swift */; };
 		B21D644F2253579F000C6854 /* MasterNavigationBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21D644E2253579F000C6854 /* MasterNavigationBarController.swift */; };
-		B21D645122536168000C6854 /* WordpressFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21D645022536168000C6854 /* WordpressFeedTableViewCell.swift */; };
 		B21D64532253A7EE000C6854 /* WordpressFeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21D64522253A7EE000C6854 /* WordpressFeedData.swift */; };
 		B21D64552253A9C1000C6854 /* NetworkingExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21D64542253A9C1000C6854 /* NetworkingExtentions.swift */; };
 		B21D64572253AAA6000C6854 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21D64562253AAA6000C6854 /* String.swift */; };
-		B224E35322ACD11A004AF0F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B224E35222ACD11A004AF0F6 /* GoogleService-Info.plist */; };
 		B225A9CA22B50C5E005E0F46 /* UIButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225A9C922B50C5E005E0F46 /* UIButtons.swift */; };
 		B225A9CE22B51B3F005E0F46 /* SLCMSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225A9CD22B51B3F005E0F46 /* SLCMSettingsViewController.swift */; };
 		B230765922A82C120047A487 /* Dark-Icon-App-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B230765722A82C120047A487 /* Dark-Icon-App-60x60@2x.png */; };
@@ -110,6 +109,18 @@
 		B2FD53E32327A84800D7C204 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FD53E22327A84800D7C204 /* NotificationViewController.swift */; };
 		B2FD53E62327A84800D7C204 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2FD53E42327A84800D7C204 /* MainInterface.storyboard */; };
 		B2FD53EA2327A84800D7C204 /* NotificationsContentExtention.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B2FD53DE2327A84800D7C204 /* NotificationsContentExtention.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BB1223B72509161C00C26B6E /* MusicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1223B62509161C00C26B6E /* MusicCollectionViewCell.swift */; };
+		BB1223B92509162D00C26B6E /* MusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1223B82509162D00C26B6E /* MusicCell.swift */; };
+		BB51D81E250A6DF4000B1747 /* HoriontalSnappingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB51D81D250A6DF4000B1747 /* HoriontalSnappingLayout.swift */; };
+		BB51D820250A6F7D000B1747 /* WordpressFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB51D81F250A6F7D000B1747 /* WordpressFeedTableViewCell.swift */; };
+		BB51D822250A7049000B1747 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB51D821250A7049000B1747 /* UIView+Layout.swift */; };
+		BB57B5BA255F30FB0018F575 /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB57B5B8255F30FB0018F575 /* DropDownCell.swift */; };
+		BB57B5BB255F30FB0018F575 /* DropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB57B5B9255F30FB0018F575 /* DropDownCell.xib */; };
+		BB935F252559479D002F427A /* TwitterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB935F242559479D002F427A /* TwitterCell.swift */; };
+		BB935F4B2559499C002F427A /* TwitterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB935F4A2559499C002F427A /* TwitterCollectionViewCell.swift */; };
+		BB935FFC2559686F002F427A /* TwitterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB935FFB2559686F002F427A /* TwitterModel.swift */; };
+		BBA94E62252B67D600C57097 /* PlaylistBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA94E61252B67D600C57097 /* PlaylistBottomSheetView.swift */; };
+		BBA94E6B252B6AC400C57097 /* PlaylistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA94E6A252B6AC400C57097 /* PlaylistModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,9 +156,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8B459DF3256C54D800588B2A /* AlertsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertsData.swift; sourceTree = "<group>"; };
+		8B51469C256C7655008B590B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8B7C36EC24A5F9E300C98AFC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B2061CED229F9F4F0024D8E6 /* SocialData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialData.swift; sourceTree = "<group>"; };
 		B20A613F22A6B4560044CB2F /* AlertsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewController.swift; sourceTree = "<group>"; };
-		B20A614122A6B4A30044CB2F /* AlertsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsData.swift; sourceTree = "<group>"; };
 		B20A614322A6B5E10044CB2F /* AlertsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsTableViewCell.swift; sourceTree = "<group>"; };
 		B20A614C22A7AB760044CB2F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B20A614E22A7ADC50044CB2F /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -159,7 +172,6 @@
 		B21D642E2253571C000C6854 /* MTTN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MTTN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B21D64312253571C000C6854 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B21D64332253571C000C6854 /* WordpressFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordpressFeedViewController.swift; sourceTree = "<group>"; };
-		B21D64382253571E000C6854 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B21D643B2253571E000C6854 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B21D643D2253571E000C6854 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B21D64432253574F000C6854 /* MasterTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterTabBarController.swift; sourceTree = "<group>"; };
@@ -168,12 +180,10 @@
 		B21D644822535778000C6854 /* AppTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		B21D644922535778000C6854 /* SubscribableValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribableValue.swift; sourceTree = "<group>"; };
 		B21D644E2253579F000C6854 /* MasterNavigationBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterNavigationBarController.swift; sourceTree = "<group>"; };
-		B21D645022536168000C6854 /* WordpressFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordpressFeedTableViewCell.swift; sourceTree = "<group>"; };
 		B21D64522253A7EE000C6854 /* WordpressFeedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordpressFeedData.swift; sourceTree = "<group>"; };
 		B21D64542253A9C1000C6854 /* NetworkingExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingExtentions.swift; sourceTree = "<group>"; };
 		B21D64562253AAA6000C6854 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		B224E35122ACD092004AF0F6 /* MTTN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MTTN.entitlements; sourceTree = "<group>"; };
-		B224E35222ACD11A004AF0F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B225A9C922B50C5E005E0F46 /* UIButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtons.swift; sourceTree = "<group>"; };
 		B225A9CD22B51B3F005E0F46 /* SLCMSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLCMSettingsViewController.swift; sourceTree = "<group>"; };
 		B230765722A82C120047A487 /* Dark-Icon-App-60x60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dark-Icon-App-60x60@2x.png"; sourceTree = "<group>"; };
@@ -259,6 +269,18 @@
 		B2FD53E22327A84800D7C204 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		B2FD53E52327A84800D7C204 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		B2FD53E72327A84800D7C204 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB1223B62509161C00C26B6E /* MusicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCollectionViewCell.swift; sourceTree = "<group>"; };
+		BB1223B82509162D00C26B6E /* MusicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCell.swift; sourceTree = "<group>"; };
+		BB51D81D250A6DF4000B1747 /* HoriontalSnappingLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoriontalSnappingLayout.swift; sourceTree = "<group>"; };
+		BB51D81F250A6F7D000B1747 /* WordpressFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordpressFeedTableViewCell.swift; sourceTree = "<group>"; };
+		BB51D821250A7049000B1747 /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
+		BB57B5B8255F30FB0018F575 /* DropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
+		BB57B5B9255F30FB0018F575 /* DropDownCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropDownCell.xib; sourceTree = "<group>"; };
+		BB935F242559479D002F427A /* TwitterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterCell.swift; sourceTree = "<group>"; };
+		BB935F4A2559499C002F427A /* TwitterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterCollectionViewCell.swift; sourceTree = "<group>"; };
+		BB935FFB2559686F002F427A /* TwitterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterModel.swift; sourceTree = "<group>"; };
+		BBA94E61252B67D600C57097 /* PlaylistBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistBottomSheetView.swift; sourceTree = "<group>"; };
+		BBA94E6A252B6AC400C57097 /* PlaylistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistModel.swift; sourceTree = "<group>"; };
 		DA23C471AC08276A9A170561 /* Pods-MTTN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTTN.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MTTN/Pods-MTTN.debug.xcconfig"; sourceTree = "<group>"; };
 		E8D3196BCED76B1BF7F14610 /* Pods_MTTN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MTTN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDA2EF1EAA47FD79BB31ABC3 /* Pods-MTTN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTTN.release.xcconfig"; path = "Pods/Target Support Files/Pods-MTTN/Pods-MTTN.release.xcconfig"; sourceTree = "<group>"; };
@@ -304,6 +326,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8B459DF2256C54D800588B2A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8B459DF3256C54D800588B2A /* AlertsData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B205B10E2286F360003A2174 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,8 +343,10 @@
 				B2F3159722891E8D008A2611 /* UIDevice.swift */,
 				B26D295822B223220053F428 /* SearchBar.swift */,
 				B2F3159922891ED2008A2611 /* UserDefaults.swift */,
+				BB51D821250A7049000B1747 /* UIView+Layout.swift */,
 				B225A9C922B50C5E005E0F46 /* UIButtons.swift */,
 				B2F42FE6231017CA0002B339 /* UIImage.swift */,
+				BB51D81D250A6DF4000B1747 /* HoriontalSnappingLayout.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -372,19 +404,11 @@
 		B20A614522A6C5700044CB2F /* Alerts */ = {
 			isa = PBXGroup;
 			children = (
-				B20A614622A6C57B0044CB2F /* Model */,
+				8B459DF2256C54D800588B2A /* Model */,
 				B20A614722A6C5830044CB2F /* View */,
 				B20A614822A6C5880044CB2F /* Controller */,
 			);
 			path = Alerts;
-			sourceTree = "<group>";
-		};
-		B20A614622A6C57B0044CB2F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				B20A614122A6B4A30044CB2F /* AlertsData.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		B20A614722A6C5830044CB2F /* View */ = {
@@ -471,12 +495,13 @@
 				B246245222885D7E000FE11A /* Wordpress */,
 				B24BD6DB22A90253003D973B /* SLCM */,
 				B23E8934229F9B9600417E88 /* Social */,
+				B2F226F422EF285500AAEAC0 /* BlitzKreigCollectionViewCell.swift */,
 				B20A613A22A69C220044CB2F /* Directory */,
 				B20A614522A6C5700044CB2F /* Alerts */,
-				B21D64382253571E000C6854 /* Assets.xcassets */,
 				B21D643A2253571E000C6854 /* LaunchScreen.storyboard */,
 				B21D643D2253571E000C6854 /* Info.plist */,
-				B224E35222ACD11A004AF0F6 /* GoogleService-Info.plist */,
+				8B51469C256C7655008B590B /* Assets.xcassets */,
+				8B7C36EC24A5F9E300C98AFC /* GoogleService-Info.plist */,
 				B2F42FE0230FEB6A0002B339 /* Bulletin */,
 				B205B10E2286F360003A2174 /* Extentions */,
 				B21D644522535778000C6854 /* Dark Mode */,
@@ -608,8 +633,9 @@
 				B2F42FE82310240E0002B339 /* Noir Card */,
 				B25B8F9222A1A874008B588A /* Upcoming Events */,
 				B284679A22A14347001437B8 /* Instagram */,
+				BB935FD625594CE6002F427A /* Twitter */,
 				B279882322A10B7800142F34 /* Youtube */,
-				B2F226F422EF285500AAEAC0 /* BlitzKreigCollectionViewCell.swift */,
+				BB1223B2250915D100C26B6E /* Music Playlist */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -817,7 +843,7 @@
 		B2CA858722888A840065581F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B21D645022536168000C6854 /* WordpressFeedTableViewCell.swift */,
+				BB51D81F250A6F7D000B1747 /* WordpressFeedTableViewCell.swift */,
 				B2462453228865F9000FE11A /* WordpressFeedLoaderViewCell.swift */,
 			);
 			path = View;
@@ -828,6 +854,8 @@
 			children = (
 				B21D64332253571C000C6854 /* WordpressFeedViewController.swift */,
 				B2462455228870B6000FE11A /* WordpressFeedPostViewController.swift */,
+				BB57B5B8255F30FB0018F575 /* DropDownCell.swift */,
+				BB57B5B9255F30FB0018F575 /* DropDownCell.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -869,6 +897,75 @@
 				B2FD53E72327A84800D7C204 /* Info.plist */,
 			);
 			path = NotificationsContentExtention;
+			sourceTree = "<group>";
+		};
+		BB1223B2250915D100C26B6E /* Music Playlist */ = {
+			isa = PBXGroup;
+			children = (
+				BBA94E66252B687C00C57097 /* Model */,
+				BB1223B4250915F900C26B6E /* View */,
+				BB1223B3250915EE00C26B6E /* Controller */,
+			);
+			path = "Music Playlist";
+			sourceTree = "<group>";
+		};
+		BB1223B3250915EE00C26B6E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BB1223B62509161C00C26B6E /* MusicCollectionViewCell.swift */,
+				BBA94E61252B67D600C57097 /* PlaylistBottomSheetView.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BB1223B4250915F900C26B6E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB1223B82509162D00C26B6E /* MusicCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BB57B592255F262B0018F575 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BB935FFB2559686F002F427A /* TwitterModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BB57B593255F26460018F575 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB935F242559479D002F427A /* TwitterCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BB57B594255F26500018F575 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BB935F4A2559499C002F427A /* TwitterCollectionViewCell.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BB935FD625594CE6002F427A /* Twitter */ = {
+			isa = PBXGroup;
+			children = (
+				BB57B592255F262B0018F575 /* Model */,
+				BB57B593255F26460018F575 /* View */,
+				BB57B594255F26500018F575 /* Controller */,
+			);
+			path = Twitter;
+			sourceTree = "<group>";
+		};
+		BBA94E66252B687C00C57097 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BBA94E6A252B6AC400C57097 /* PlaylistModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -991,20 +1088,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B224E35322ACD11A004AF0F6 /* GoogleService-Info.plist in Resources */,
 				B21D643C2253571E000C6854 /* LaunchScreen.storyboard in Resources */,
 				B275E98A23648847007AEF98 /* Crew-Icon-App-76x76@2x.png in Resources */,
 				B230765922A82C120047A487 /* Dark-Icon-App-60x60@2x.png in Resources */,
 				B275E9812364877C007AEF98 /* Green-Icon-App-60x60@3x.png in Resources */,
 				B275E97E2364877C007AEF98 /* Green-Icon-App-60x60@2x.png in Resources */,
+				BB57B5BB255F30FB0018F575 /* DropDownCell.xib in Resources */,
 				B230765A22A82C120047A487 /* Dark-Icon-App-60x60@3x.png in Resources */,
 				B275E98823648847007AEF98 /* Crew-Icon-App-60x60@3x.png in Resources */,
-				B21D64392253571E000C6854 /* Assets.xcassets in Resources */,
+				8B7C36ED24A5F9E300C98AFC /* GoogleService-Info.plist in Resources */,
 				B275E9802364877C007AEF98 /* Green-Icon-App-76x76@1x.png in Resources */,
 				B2FAFF6322B607630007B9BE /* Dark-Icon-App-76x76@1x.png in Resources */,
 				B275E98923648847007AEF98 /* Crew-Icon-App-60x60@2x.png in Resources */,
 				B2FAFF6422B607630007B9BE /* Dark-Icon-App-76x76@2x.png in Resources */,
 				B275E97F2364877C007AEF98 /* Green-Icon-App-76x76@2x.png in Resources */,
+				8B51469D256C7655008B590B /* Assets.xcassets in Resources */,
 				B275E98723648847007AEF98 /* Crew-Icon-App-76x76@1x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1078,15 +1176,18 @@
 				B21D644A22535778000C6854 /* Theming.swift in Sources */,
 				B225A9CA22B50C5E005E0F46 /* UIButtons.swift in Sources */,
 				B25B8F8D22A1950F008B588A /* UpcomingEventsCollectionViewCell.swift in Sources */,
+				BBA94E6B252B6AC400C57097 /* PlaylistModel.swift in Sources */,
 				B2F3159822891E8D008A2611 /* UIDevice.swift in Sources */,
 				B225A9CE22B51B3F005E0F46 /* SLCMSettingsViewController.swift in Sources */,
 				B230769E22A83CCF0047A487 /* Mouth.swift in Sources */,
 				B230769622A83CCF0047A487 /* CATransform3D+Helper.swift in Sources */,
+				BB1223B92509162D00C26B6E /* MusicCell.swift in Sources */,
 				B21D64572253AAA6000C6854 /* String.swift in Sources */,
 				B23076A422A83CCF0047A487 /* Muzzle.swift in Sources */,
 				B230769D22A83CCF0047A487 /* LeftEye.swift in Sources */,
 				B23076A522A83CCF0047A487 /* LeftArm.swift in Sources */,
 				B284679922A1418E001437B8 /* InstagramCollectionViewCell.swift in Sources */,
+				BBA94E62252B67D600C57097 /* PlaylistBottomSheetView.swift in Sources */,
 				B23076AC22A83EFA0047A487 /* SLCMData.swift in Sources */,
 				B230769822A83CCF0047A487 /* UIColors+ColorPallete.swift in Sources */,
 				B230769922A83CCF0047A487 /* CritterView.swift in Sources */,
@@ -1104,11 +1205,13 @@
 				B23076AA22A83D4D0047A487 /* SLCMViewController.swift in Sources */,
 				B20A614F22A7ADC50044CB2F /* SettingsTableViewCell.swift in Sources */,
 				B2861D5D22A64342004C3845 /* DirectoryViewController.swift in Sources */,
+				BB1223B72509161C00C26B6E /* MusicCollectionViewCell.swift in Sources */,
 				B21D64342253571C000C6854 /* WordpressFeedViewController.swift in Sources */,
 				B2B738AB22AA3A97006F5A3E /* FloatingMessage.swift in Sources */,
 				B2F226F522EF285500AAEAC0 /* BlitzKreigCollectionViewCell.swift in Sources */,
 				B2F42FE7231017CA0002B339 /* UIImage.swift in Sources */,
 				B21D644D22535778000C6854 /* SubscribableValue.swift in Sources */,
+				BB51D822250A7049000B1747 /* UIView+Layout.swift in Sources */,
 				B279882622A10B8C00142F34 /* YoutubeCell.swift in Sources */,
 				B2744C4923ADE410003B0FFD /* SISData.swift in Sources */,
 				B2E3638922AF496200AF131D /* Networking.swift in Sources */,
@@ -1125,14 +1228,16 @@
 				B230769F22A83CCF0047A487 /* Nose.swift in Sources */,
 				B20A614422A6B5E10044CB2F /* AlertsTableViewCell.swift in Sources */,
 				B230765C22A82C9A0047A487 /* AppIconService.swift in Sources */,
+				BB935F4B2559499C002F427A /* TwitterCollectionViewCell.swift in Sources */,
 				B23076A322A83CCF0047A487 /* LeftEarMask.swift in Sources */,
+				BB935F252559479D002F427A /* TwitterCell.swift in Sources */,
 				B25B8F8F22A197B2008B588A /* UpcomingEventsCell.swift in Sources */,
 				B23076A722A83CCF0047A487 /* Body.swift in Sources */,
 				B20A615622A7CAF90044CB2F /* DirectoryTableViewCell.swift in Sources */,
 				B25B8F9122A19A96008B588A /* UpcomingEventsData.swift in Sources */,
+				BB51D81E250A6DF4000B1747 /* HoriontalSnappingLayout.swift in Sources */,
 				B2F3159A22891ED2008A2611 /* UserDefaults.swift in Sources */,
 				B20A614022A6B4560044CB2F /* AlertsViewController.swift in Sources */,
-				B21D645122536168000C6854 /* WordpressFeedTableViewCell.swift in Sources */,
 				B2127BB322B4FBC5009BCD08 /* DeveloperViewController.swift in Sources */,
 				B21D644C22535778000C6854 /* AppTheme.swift in Sources */,
 				B2061CEE229F9F4F0024D8E6 /* SocialData.swift in Sources */,
@@ -1140,16 +1245,19 @@
 				B23E8933229F9B4400417E88 /* SocialViewController.swift in Sources */,
 				B23076A622A83CCF0047A487 /* LeftEar.swift in Sources */,
 				B279882C22A118CF00142F34 /* Secrets.swift in Sources */,
+				8B459DF4256C54D800588B2A /* AlertsData.swift in Sources */,
 				B230769C22A83CCF0047A487 /* RightEye.swift in Sources */,
+				BB57B5BA255F30FB0018F575 /* DropDownCell.swift in Sources */,
+				BB935FFC2559686F002F427A /* TwitterModel.swift in Sources */,
 				B23076A122A83CCF0047A487 /* Head.swift in Sources */,
 				B21D64442253574F000C6854 /* MasterTabBarController.swift in Sources */,
 				B21D644B22535778000C6854 /* AppThemeProvider.swift in Sources */,
 				B2861D5F22A643DB004C3845 /* DirectoryData.swift in Sources */,
+				BB51D820250A6F7D000B1747 /* WordpressFeedTableViewCell.swift in Sources */,
 				B275E9792364839C007AEF98 /* AppIconsViewController.swift in Sources */,
 				B25B8F9922A1A927008B588A /* NoirSelectCollectionViewCell.swift in Sources */,
 				B20A615122A7AF430044CB2F /* AboutInfoHeader.swift in Sources */,
 				B2E3638B22AF7A3700AF131D /* Notifications.swift in Sources */,
-				B20A614222A6B4A30044CB2F /* AlertsData.swift in Sources */,
 				B284679D22A1436B001437B8 /* InstagramCell.swift in Sources */,
 				B26D295922B223220053F428 /* SearchBar.swift in Sources */,
 				B20A614D22A7AB760044CB2F /* SettingsViewController.swift in Sources */,
@@ -1332,7 +1440,7 @@
 				CODE_SIGN_ENTITLEMENTS = MTTN/MTTN.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = JB85XJ823E;
+				DEVELOPMENT_TEAM = YQEC2ZY373;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MTTN",
@@ -1345,7 +1453,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gauravanandprakash.mttn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tushar.mttn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1361,7 +1469,7 @@
 				CODE_SIGN_ENTITLEMENTS = MTTN/MTTN.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = JB85XJ823E;
+				DEVELOPMENT_TEAM = YQEC2ZY373;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MTTN",
@@ -1374,7 +1482,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gauravanandprakash.mttn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tushar.mttn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1386,7 +1494,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = JB85XJ823E;
+				DEVELOPMENT_TEAM = YQEC2ZY373;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1395,7 +1503,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 2.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gauravanandprakash.mttn.NotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tushar.mttn.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1408,7 +1516,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = JB85XJ823E;
+				DEVELOPMENT_TEAM = YQEC2ZY373;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1417,7 +1525,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 2.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gauravanandprakash.mttn.NotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tushar.mttn.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1430,7 +1538,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = JB85XJ823E;
+				DEVELOPMENT_TEAM = YQEC2ZY373;
 				INFOPLIST_FILE = NotificationsContentExtention/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1439,7 +1547,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 2.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gauravanandprakash.mttn.NotificationsContentExtention;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tushar.mttn.NotificationsContentExtention;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1452,7 +1560,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = JB85XJ823E;
+				DEVELOPMENT_TEAM = YQEC2ZY373;
 				INFOPLIST_FILE = NotificationsContentExtention/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1461,7 +1569,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 2.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gauravanandprakash.mttn.NotificationsContentExtention;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tushar.mttn.NotificationsContentExtention;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;

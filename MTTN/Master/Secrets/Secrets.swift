@@ -32,7 +32,7 @@ let youtubeUrl = ""
 
 let instagramUrl = ""
 
-let feedURL = "https://manipalthetalk.org/wp-json/wp/v2/posts?page="
+var feedURL = "https://manipalthetalk.org/wp-json/wp/v2/posts?page="
 
 let slcmURL = "https://slcm.herokuapp.com/attendance"
 

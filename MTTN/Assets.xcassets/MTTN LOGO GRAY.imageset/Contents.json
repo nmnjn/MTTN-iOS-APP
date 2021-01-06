@@ -1,57 +1,57 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
       "filename" : "MTTN LOGO GRAY-1.png",
+      "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
       "filename" : "MTTN LOGO WHITE.png",
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
+      "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
       "filename" : "MTTN LOGO GRAY.png",
+      "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
-      "filename" : "MTTN LOGO WHITE-1.png",
       "appearances" : [
         {
           "appearance" : "luminosity",
           "value" : "dark"
         }
       ],
+      "filename" : "MTTN LOGO WHITE-1.png",
+      "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
       "filename" : "MTTN LOGO GRAY-2.png",
+      "idiom" : "universal",
       "scale" : "3x"
     },
     {
-      "idiom" : "universal",
-      "filename" : "MTTN LOGO WHITE-2.png",
       "appearances" : [
         {
           "appearance" : "luminosity",
           "value" : "dark"
         }
       ],
+      "filename" : "MTTN LOGO WHITE-2.png",
+      "idiom" : "universal",
       "scale" : "3x"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   },
   "properties" : {
     "template-rendering-intent" : "template"
