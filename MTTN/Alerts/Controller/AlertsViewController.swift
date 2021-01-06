@@ -117,7 +117,7 @@ class AlertsViewController: UITableViewController{
 		let button = UIButton(type: .infoLight)
 		button.setImage(UIImage(named: "chevron-down"), for: .normal)
 		button.addTarget(self, action: #selector(handleFilterButton), for: .touchUpInside)
-		let dropDownButtonItem = UIBarButtonItem(customView: button)
+        let dropDownButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(handleFilterButton))
 		navigationItem.rightBarButtonItem = dropDownButtonItem
         
 //        let button = UIBarButtonItem(image: UIImage.init(systemName: "chevron.down"), style: .done, target: self, action: #selector(handleFilterButton))

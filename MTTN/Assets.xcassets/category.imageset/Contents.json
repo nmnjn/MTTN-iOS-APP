@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "icons8-choose-page-48.png",
+      "filename" : "cat-light.pdf",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,7 +12,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "icons8-choose-page-48-2.png",
+      "filename" : "cat-dak.pdf",
       "idiom" : "universal",
       "scale" : "1x"
     },
