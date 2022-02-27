@@ -507,7 +507,10 @@ extension WordpressFeedViewController : UITableViewDelegate , UITableViewDataSou
         let cell = tableView.dequeueReusableCell(withIdentifier: "WordpressFeedTableViewCellId", for: indexPath) as! WordpressFeedTableViewCell
         cell.postTitle.text = posts[indexPath.row].title
         if let imgURL = posts[indexPath.row].imgURL {
-            let url = NSURL(string: imgURL)
+            var url = NSURL(string: imgURL)
+            if(url == nil){
+                url = NSURL(string: "https://firebasestorage.googleapis.com/v0/b/mttn-475ad.appspot.com/o/default-image.jpeg?alt=media&token=0e70c765-790a-402d-a165-d6fba0093667")
+            }
             cell.postImage.sd_setImage(with: url! as URL, placeholderImage:nil)
         }
         cell.dateLabel.text = posts[indexPath.row].date

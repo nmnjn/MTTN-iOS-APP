@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseMessaging
-import FirebaseInstanceID
 import UserNotifications
 import SafariServices
 import DropDown
@@ -129,7 +128,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         })
     }
     
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         //this function is used to save fcmToken in UserDefaults
         print("fcmToken: \(fcmToken)")
         UserDefaults.standard.set(fcmToken, forKey: "fcmToken")
@@ -163,7 +162,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     @objc func FBHandler(value: Bool) {
-        Messaging.messaging().shouldEstablishDirectChannel = value
+//        Messaging.messaging().apnsToken = 
     }
     
     func handleApplicationStartingFromNotification(launchOptions: [UIApplication.LaunchOptionsKey: Any]?){
