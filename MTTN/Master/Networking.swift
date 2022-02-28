@@ -37,8 +37,7 @@ struct Networking {
         var attendance = [Attendance]()
         var credits = [Credits]()
         
-        let url = NSURL(string: "http://139.59.23.178:8000/attendance_again") //"http://68.183.81.48:6969/attendance") //
-        
+        let url = NSURL(string: "\(urlString)_again")
         let session = URLSession.shared
         let request = NSMutableURLRequest(url: url! as URL)
         
