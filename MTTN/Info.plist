@@ -23,7 +23,7 @@
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>Dark-Icon-App-60x60</string>
+					<string>DarkAppIcon</string>
 				</array>
 			</dict>
 			<key>GreenAppIcon</key>
@@ -38,7 +38,7 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string></string>
+				<string>AppIcon</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<false/>
@@ -59,7 +59,7 @@
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>Dark-Icon-App-76x76</string>
+					<string>DarkAppIcon</string>
 				</array>
 			</dict>
 			<key>GreenAppIcon</key>
